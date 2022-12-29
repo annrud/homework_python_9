@@ -10,8 +10,6 @@ async def get_keyboards_choice_first_move():
         ))
     return inline_keyboard
 
-BEST_MOVES = (4, 0, 2, 6, 8, 1, 3, 5, 7)
-
 
 async def get_game_board(first=None):
     inline_keyboard = InlineKeyboardMarkup()
@@ -31,5 +29,15 @@ async def get_new_game_board(number=None, keyboard=None, tic='⭕'):
             elif button['callback_data'] == f'button_bot_{number}' and button['text'] == '❔️':
                 button['text'] = tic
     return keyboard
+
+
+async def fill_buttons(keyboard=None):
+    print('Зашли в fill_buttons')
+    for row in keyboard.inline_keyboard:
+        for button in row:
+            if button['text'] == '❔️':
+                button['text'] = '⚪️'
+    return keyboard
+
 
 
