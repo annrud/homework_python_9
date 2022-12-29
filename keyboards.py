@@ -24,20 +24,22 @@ async def get_game_board(first=None):
 async def get_new_game_board(number=None, keyboard=None, tic='⭕'):
     for row in keyboard.inline_keyboard:
         for button in row:
-            if button['callback_data'] == f'button_user_{number}' and button['text'] == '❔️':
+            if (
+                    button['callback_data'] == f'button_user_{number}' and
+                    button['text'] == '❔️'
+            ):
                 button['text'] = tic
-            elif button['callback_data'] == f'button_bot_{number}' and button['text'] == '❔️':
+            elif (
+                    button['callback_data'] == f'button_bot_{number}' and
+                    button['text'] == '❔️'
+            ):
                 button['text'] = tic
     return keyboard
 
 
 async def fill_buttons(keyboard=None):
-    print('Зашли в fill_buttons')
     for row in keyboard.inline_keyboard:
         for button in row:
             if button['text'] == '❔️':
                 button['text'] = '⚪️'
     return keyboard
-
-
-
